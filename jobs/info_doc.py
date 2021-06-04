@@ -9,13 +9,16 @@ import settings_connect as sc
 class Doc_and_stage():
 	
 	def __init__(self):
-		self.IP_HOST_1C		= sc.IP_HOST_1C
-		self.LOGIN_1C 		= sc.LOGIN_1C
-		self.PASSWORD_1C 	= sc.PASSWORD_1C
-		self.IP_HOST_DB		= sc.IP_HOST_DB
-		self.USER_DB 		= sc.USER_DB
-		self.PASSWORD_DB 	= sc.PASSWORD_DB
-		self.Name_DB 		= sc.Name_DB
+		pass
+	
+	def set_settings(self, default_settings):
+		self.IP_HOST_1C		= default_settings.IP_HOST_1C
+		self.LOGIN_1C 		= default_settings.LOGIN_1C
+		self.PASSWORD_1C 	= default_settings.PASSWORD_1C
+		self.IP_HOST_DB		= default_settings.IP_HOST_DB
+		self.USER_DB 		= default_settings.USER_DB
+		self.PASSWORD_DB 	= default_settings.PASSWORD_DB
+		self.NAME_DB 		= default_settings.NAME_DB
 		
 	def delet_all_doc(self):
 		result_search = sql.session.query(sql.TableObject).all()
@@ -68,7 +71,7 @@ class Doc_and_stage():
 
 		where_number = where_number[1:-1]
 
-		mydb = mysql.connector.connect(host=self.IP_HOST_DB,user=self.USER_DB,password=self.PASSWORD_DB,database=self.Name_DB) 
+		mydb = mysql.connector.connect(host=self.IP_HOST_DB,user=self.USER_DB,password=self.PASSWORD_DB,database=self.NAME_DB) 
 
 		mycursor = mydb.cursor()
 		query_object = """Select
@@ -171,7 +174,7 @@ class Doc_and_stage():
 
 		where_number = where_number[1:-1]
 
-		mydb = mysql.connector.connect(host=self.IP_HOST_DB,user=self.USER_DB,password=self.PASSWORD_DB,database=self.Name_DB) 
+		mydb = mysql.connector.connect(host=self.IP_HOST_DB,user=self.USER_DB,password=self.PASSWORD_DB,database=self.NAME_DB) 
 		mycursor = mydb.cursor()
 
 		'''query_stage = """Select

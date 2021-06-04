@@ -4,15 +4,16 @@ import pysftp
 from jobs import sql
 import os
 
-import settings_connect as sc
-
 class Load_update_image():
 	
 	def __init__(self):
-		self.IP_HOST_DB		= sc.IP_HOST_DB
-		self.USER_DB 		= sc.USER_DB
-		self.PASSWORD_DB 	= sc.PASSWORD_DB
-		self.Name_DB 		= sc.Name_DB
+		pass
+	
+	def set_settings(self, default_settings):
+		self.IP_HOST_DB		= default_settings.IP_HOST_DB
+		self.USER_DB 		= default_settings.USER_DB
+		self.PASSWORD_DB 	= default_settings.PASSWORD_DB
+		self.NAME_DB 		= default_settings.NAME_DB
 	
 	
 	def delete_image(slef):
@@ -32,7 +33,7 @@ class Load_update_image():
 
 		where_number = where_number[1:-1]
 
-		mydb = mysql.connector.connect(host=self.IP_HOST_DB,user=self.USER_DB,password=self.PASSWORD_DB",database=self.Name_DB) 
+		mydb = mysql.connector.connect(host=self.IP_HOST_DB,user=self.USER_DB,password=self.PASSWORD_DB",database=self.NAME_DB) 
 		mycursor = mydb.cursor() 
 		query_image = """Select
 			t_image.id,

@@ -4,15 +4,17 @@ import base64
 from jobs import sql
 import os
 
-import settings_connect as sc
-
 class Load_update_pdf()
 	
 	def __init__(self):
-		self.LOGIN_1C 			= sc.LOGIN_1C
-		self.PASSWORD_1C 		= sc.PASSWORD_1C
-		self.URL_DOC_PDF		= 'http://' + sc.IP_HOST_1C +'/poradom_base/hs/GetTask/get_pdf'
-		self.URL_DOC_PDF_DOP 	= 'http://' + sc.IP_HOST_1C +'/poradom_base/hs/GetTask/get_pdf_dop'
+		pass
+		
+		
+	def set_settings(self, default_settings):
+		self.LOGIN_1C 			= default_settings.LOGIN_1C
+		self.PASSWORD_1C 		= default_settings.PASSWORD_1C
+		self.URL_DOC_PDF		= 'http://' + default_settings.IP_HOST_1C +'/poradom_base/hs/GetTask/get_pdf'
+		self.URL_DOC_PDF_DOP 	= 'http://' + default_settings.IP_HOST_1C +'/poradom_base/hs/GetTask/get_pdf_dop'
 		
 	def get_pdf_for_doc(self):
 
