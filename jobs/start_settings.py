@@ -21,7 +21,7 @@ def insert_default_settings():
 
 	result_search = sql.session.query(sql.User).filter_by(username='admin').first()
 	if result_search is None:
-		#poradom_lk
+
 		user_admin = sql.User(username='admin',
 						password_hash='pbkdf2:sha256:150000$F0Q7mKci$c416f09ac48c58f093598e196f9c76918fe04e7a1cc9a27b92ffafcf1c4d855b',
 						comment='',
@@ -32,7 +32,7 @@ def insert_default_settings():
 
 	result_search = sql.session.query(sql.User).filter_by(username='External_user').first()
 	if result_search is None:
-		#TKTw4Z
+		
 		user_external = sql.User(username='External_user',
 						password_hash='pbkdf2:sha256:150000$MXzxabqn$d3dda60fced3ce1c7017c7d28cb68b876df07e087dc0fe1d77fefcb99a9bc5ea',
 						comment='',
