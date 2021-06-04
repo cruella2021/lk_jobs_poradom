@@ -21,9 +21,9 @@ def main():
 	doc_pdf.get_pdf_for_dop()
 
 #main()
-while True:
-	main()
-	print('================')
-	time.sleep(3*60*60)
-	print('=====SLEEP=====')
+#while True:
+	#main()
+	#print('================')
+	#time.sleep(3*60*60)
+	#print('=====SLEEP=====')
 	
