@@ -4,15 +4,9 @@ import time
 def main():
 	
 	start_settings.insert_default_settings()
-	#info_doc.delet_all_doc()
-	info_doc.delete_all_stage()
-	info_doc.remote_delete_objects()
-	info_doc.load_object()
-	info_doc.load_available_stage()
-	info_doc.load_email_tel()
-	info_doc.load_stage()
-	info_doc.rename_stage()
-	info_doc.load_partners()
+	new_Doc = info_doc.Doc_and_stage()
+	new_Doc.main()
+	
 	image_stage.delete_image()
 	image_stage.load_images()
 	image_stage.update_sum_image_in_stage()

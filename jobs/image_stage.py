@@ -21,7 +21,7 @@ def load_images():
 
 	where_number = where_number[1:-1]
 
-	mydb = mysql.connector.connect(host="192.168.111.133",user="poradomdb_userr",password="ht6Bnc39Oirbv",database="poradomdbb") 
+	mydb = mysql.connector.connect(host="192.168.111.133",user="user_db",password="password_db",database="poradomdbb") 
 	mycursor = mydb.cursor() 
 	query_image = """Select
 		t_image.id,

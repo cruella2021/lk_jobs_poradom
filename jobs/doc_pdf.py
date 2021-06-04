@@ -22,7 +22,7 @@ def get_pdf_for_doc():
 
 		payload = json.dumps({'NumberDoc':doc.number,'DocType':'1'})
 		
-		r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/get_pdf',auth=("web","passwd0"),data=payload)
+		r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/get_pdf',auth=("login","password"),data=payload)
 		data = r.content
 
 		try:
@@ -55,7 +55,7 @@ def get_pdf_for_dop():
 
 		payload = json.dumps({'NumberDoc':doc.number,'DocType':'1'})
 		
-		r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/get_pdf_dop',auth=("web","passwd0"),data=payload)
+		r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/get_pdf_dop',auth=("login","password"),data=payload)
 		data = r.content
 
 		try:
