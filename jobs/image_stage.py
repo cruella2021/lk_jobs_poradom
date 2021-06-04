@@ -6,10 +6,7 @@ import os
 
 class Load_update_image():
 	
-	def __init__(self):
-		pass
-	
-	def set_settings(self, default_settings):
+	def __init__(self, default_settings):
 		self.IP_HOST_DB		= default_settings.IP_HOST_DB
 		self.USER_DB 		= default_settings.USER_DB
 		self.PASSWORD_DB 	= default_settings.PASSWORD_DB

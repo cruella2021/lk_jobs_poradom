@@ -8,10 +8,7 @@ import settings_connect as sc
 
 class Doc_and_stage():
 	
-	def __init__(self):
-		pass
-	
-	def set_settings(self, default_settings):
+	def __init__(self, default_settings):
 		self.IP_HOST_1C		= default_settings.IP_HOST_1C
 		self.LOGIN_1C 		= default_settings.LOGIN_1C
 		self.PASSWORD_1C 	= default_settings.PASSWORD_1C

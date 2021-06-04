@@ -6,11 +6,7 @@ import os
 
 class Load_update_pdf()
 	
-	def __init__(self):
-		pass
-		
-		
-	def set_settings(self, default_settings):
+	def __init__(self, default_settings):
 		self.LOGIN_1C 			= default_settings.LOGIN_1C
 		self.PASSWORD_1C 		= default_settings.PASSWORD_1C
 		self.URL_DOC_PDF		= 'http://' + default_settings.IP_HOST_1C +'/poradom_base/hs/GetTask/get_pdf'

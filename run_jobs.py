@@ -7,24 +7,16 @@ start_settings.insert_default_settings()
 
 defaul_settings = settings_connect.Config()
 
-new_Doc = info_doc()
-new_Doc.set_settings(defaul_settings)
-new_Doc.Doc_and_stage()
-
-new_Image 	= image_stage()
-new_Image.set_settings(defaul_settings)
-new_Image.Load_update_image()
-
-newPDF = doc_pdf()
-newPDF.set_settings(defaul_settings)
-newPDF.Load_update_pdf()
+new_Doc 	= info_doc.Doc_and_stage(defaul_settings)
+new_Image 	= image_stage().Load_update_image(defaul_settings)
+new_Pdf		= doc_pdf.Load_update_pdf(defaul_settings)
 
 
 def main():
 	
 	new_Doc.main()
 	new_Image.main()
-	newPDF.main()
+	new_Pdf.main()
 
 #main()
 #while True:
