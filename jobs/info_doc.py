@@ -4,8 +4,19 @@ import json
 import requests
 from datetime import date,datetime
 
+import settings_connect as sc
+
 class Doc_and_stage():
 	
+	def __init__(self):
+		self.IP_HOST_1C		= sc.IP_HOST_1C
+		self.LOGIN_1C 		= sc.LOGIN_1C
+		self.PASSWORD_1C 	= sc.PASSWORD_1C
+		self.IP_HOST_DB		= sc.IP_HOST_DB
+		self.USER_DB 		= sc.USER_DB
+		self.PASSWORD_DB 	= sc.PASSWORD_DB
+		self.Name_DB 		= sc.Name_DB
+		
 	def delet_all_doc(self):
 		result_search = sql.session.query(sql.TableObject).all()
 		for doc in result_search:
@@ -15,7 +26,7 @@ class Doc_and_stage():
 		
 	def remote_delete_objects(self):
 
-		r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/get_list_number_doc',auth=("login","password")) 
+		r = requests.post('http://'+ self.IP_HOST_1C +'/poradom_base/hs/GetTask/get_list_number_doc',auth=(self.LOGIN_1C,self.PASSWORD_1C)) 
 		Data = r.content 
 		if Data:
 			list_docs = json.loads(Data)
@@ -46,7 +57,7 @@ class Doc_and_stage():
 			
 	def load_object(self):
 
-		r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/get_list_number_doc',auth=("login","password")) 
+		r = requests.post('http://' + self.IP_HOST_1C + '/poradom_base/hs/GetTask/get_list_number_doc',auth=(self.LOGIN_1C,self.PASSWORD_1C)) 
 		Data = r.content 
 		if Data:
 			list_docs = json.loads(Data)
@@ -57,7 +68,7 @@ class Doc_and_stage():
 
 		where_number = where_number[1:-1]
 
-		mydb = mysql.connector.connect(host="192.168.111.133",user="user_db",password="password_db",database="poradomdbb") 
+		mydb = mysql.connector.connect(host=self.IP_HOST_DB,user=self.USER_DB,password=self.PASSWORD_DB,database=self.Name_DB) 
 
 		mycursor = mydb.cursor()
 		query_object = """Select
@@ -85,16 +96,13 @@ class Doc_and_stage():
 			if clm_fio is None or len(clm_fio) < 1:
 				continue 
 
-			#result_search = sql.session.query(sql.TableObject).filter_by(id=clm_id).first()
 			result_search = sql.session.query(sql.TableObject).filter_by(number=clm_number).first()
 
 
 			if result_search is None: 
-				#newObject = sql.TableObject(id=clm_id,number=clm_number,fio=clm_fio)
 				newObject = sql.TableObject(number=clm_number,fio=clm_fio)
 				sql.session.add(newObject)
 			else: 
-				#result_search.id		= clm_id
 				result_search.number 	= clm_number 
 				result_search.fio 		= clm_fio
 
@@ -102,7 +110,7 @@ class Doc_and_stage():
 
 	def load_available_stage(self):
 
-		r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/get_stages',auth=("login","password")) 
+		r = requests.post('http://' + self.IP_HOST_1C + '/poradom_base/hs/GetTask/get_stages',auth=(self.LOGIN_1C,self.PASSWORD_1C)) 
 		Data = r.content 
 		if Data:
 			list_stages = json.loads(Data)
@@ -116,7 +124,6 @@ class Doc_and_stage():
 				sql.session.add(newStage)
 			else:
 				sql.session.delete(found_stage)
-				#found_stage.description = l_stag['Description']
 				newStage = sql.Available_stage(name=l_stag['Stage'],description=l_stag['Description'])
 				sql.session.add(newStage)
 
@@ -128,7 +135,7 @@ class Doc_and_stage():
 		for row in select_row:
 			payload = json.dumps({'Number':row.number}) 
 
-			r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/info_object',auth=("login","password"),data=payload) 
+			r = requests.post('http://' + self.IP_HOST_1C +'/poradom_base/hs/GetTask/info_object',auth=(self.LOGIN_1C,self.PASSWORD_1C),data=payload) 
 			Data = r.content 
 			if Data:
 				dic = json.loads(Data)
@@ -150,9 +157,6 @@ class Doc_and_stage():
 
 				if row.address is None: 
 					row.address = ''
-
-				#if row.project is None: 
-				#	row.project = ''
 			
 		sql.session.commit()
 
@@ -167,7 +171,7 @@ class Doc_and_stage():
 
 		where_number = where_number[1:-1]
 
-		mydb = mysql.connector.connect(host="192.168.111.133",user="user_db",password="password_db",database="poradomdbb") 
+		mydb = mysql.connector.connect(host=self.IP_HOST_DB,user=self.USER_DB,password=self.PASSWORD_DB,database=self.Name_DB) 
 		mycursor = mydb.cursor()
 
 		'''query_stage = """Select
@@ -214,10 +218,7 @@ class Doc_and_stage():
 				continue 
 
 			resultObject = sql.session.query(sql.TableObject).filter_by(number=clm_object_number).first()
-			#resultObject = sql.session.query(sql.TableObject).get(clm_object_number) 
 			if resultObject is None:
-				#if clm_object_id == '330':
-				#	print(clm_object_id)
 				continue
 
 			resultStage = sql.session.query(sql.TableStage).get(clm_id) 
@@ -252,7 +253,7 @@ class Doc_and_stage():
 
 	def load_partners(self):
 
-		r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/get_partners',auth=("login","password")) 
+		r = requests.post('http://' + self.IP_HOST_1C + '/poradom_base/hs/GetTask/get_partners',auth=(self.LOGIN_1C,self.PASSWORD_1C)) 
 		Data = r.content 
 		if Data:
 			list_partner = json.loads(Data)

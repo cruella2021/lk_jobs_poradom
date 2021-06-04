@@ -4,14 +4,13 @@ import time
 start_settings.insert_default_settings()
 
 new_Doc 	= info_doc.Doc_and_stage()
-new_Stage 	= image_stage.Load_update_image()
+new_Image 	= image_stage.Load_update_image()
 newPDF 		= doc_pdf.Load_update_pdf()
-
 
 def main():
 	
 	new_Doc.main()
-	new_Stage.main()
+	new_Image.main()
 	newPDF.main()
 
 #main()

@@ -4,8 +4,16 @@ import base64
 from jobs import sql
 import os
 
-class Load_update_pdf()
+import settings_connect as sc
 
+class Load_update_pdf()
+	
+	def __init__(self):
+		self.LOGIN_1C 			= sc.LOGIN_1C
+		self.PASSWORD_1C 		= sc.PASSWORD_1C
+		self.URL_DOC_PDF		= 'http://' + sc.IP_HOST_1C +'/poradom_base/hs/GetTask/get_pdf'
+		self.URL_DOC_PDF_DOP 	= 'http://' + sc.IP_HOST_1C +'/poradom_base/hs/GetTask/get_pdf_dop'
+		
 	def get_pdf_for_doc(self):
 
 		rezult_table = sql.session.query(sql.TableObject).all()
@@ -24,7 +32,7 @@ class Load_update_pdf()
 
 			payload = json.dumps({'NumberDoc':doc.number,'DocType':'1'})
 			
-			r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/get_pdf',auth=("login","password"),data=payload)
+			r = requests.post(self.URL_DOC_PDF,auth=(self.LOGIN_1C,self.PASSWORD_1C),data=payload)
 			data = r.content
 
 			try:
@@ -57,7 +65,7 @@ class Load_update_pdf()
 
 			payload = json.dumps({'NumberDoc':doc.number,'DocType':'1'})
 			
-			r = requests.post('http://192.168.111.204/poradom_base/hs/GetTask/get_pdf_dop',auth=("login","password"),data=payload)
+			r = requests.post(self.URL_DOC_PDF_DOP,auth=(self.LOGIN_1C,self.PASSWORD_1C),data=payload)
 			data = r.content
 
 			try:

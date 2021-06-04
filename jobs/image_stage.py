@@ -4,7 +4,16 @@ import pysftp
 from jobs import sql
 import os
 
+import settings_connect as sc
+
 class Load_update_image():
+	
+	def __init__(self):
+		self.IP_HOST_DB		= sc.IP_HOST_DB
+		self.USER_DB 		= sc.USER_DB
+		self.PASSWORD_DB 	= sc.PASSWORD_DB
+		self.Name_DB 		= sc.Name_DB
+	
 	
 	def delete_image(slef):
 		all_image = sql.session.query(sql.TableImage).all()
@@ -23,7 +32,7 @@ class Load_update_image():
 
 		where_number = where_number[1:-1]
 
-		mydb = mysql.connector.connect(host="192.168.111.133",user="user_db",password="password_db",database="poradomdbb") 
+		mydb = mysql.connector.connect(host=self.IP_HOST_DB,user=self.USER_DB,password=self.PASSWORD_DB",database=self.Name_DB) 
 		mycursor = mydb.cursor() 
 		query_image = """Select
 			t_image.id,
@@ -77,18 +86,15 @@ class Load_update_image():
 
 		sql.session.commit()
 
-	def upload_image_from_srv(slef):
+	def upload_image_from_srv(self):
 
-		host = '192.168.111.133'
-		username = 'login_db'
-		password = 'password_db'
 		str_srv = '/var/www/sporadom/httpdocs/web/uploads/'
 		str_local = '/var/www/share/static/images/'
 
 		rezult = sql.session.query(sql.TableImage).all()
 		
 		
-		sftp = pysftp.Connection(host=host,username=username,password=password)
+		sftp = pysftp.Connection(host=self.IP_HOST_DB,username=self.USER_DB,password=self.PASSWORD_DB)
 		
 		for row in rezult:
 			srv = str_srv + row.filename
