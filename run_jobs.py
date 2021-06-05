@@ -13,7 +13,6 @@ new_Pdf		= doc_pdf.Load_update_pdf(defaul_settings)
 
 
 def main():
-	
 	new_Doc.main()
 	new_Image.main()
 	new_Pdf.main()
