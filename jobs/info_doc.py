@@ -4,8 +4,6 @@ import json
 import requests
 from datetime import date,datetime
 
-import settings_connect as sc
-
 class Doc_and_stage():
 	
 	def __init__(self, default_settings):

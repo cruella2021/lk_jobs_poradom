@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from datetime import date
 
 fl_debug_sql = False
-engine = create_engine('sqlite:////var/www/share/db.db',echo=fl_debug_sql)
+engine = create_engine('sqlite:///db.db',echo=fl_debug_sql)
 
 Base = declarative_base()
 
