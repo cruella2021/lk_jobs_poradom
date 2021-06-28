@@ -1,6 +1,6 @@
 #from jobs import info_doc, image_stage, doc_pdf, start_settings
 import sys
-from jobs import start_settings, settings_connect, info_doc
+from jobs import start_settings, settings_connect, info_doc, image_stage,doc_pdf
 import time
 
 fl_exit = False
@@ -14,16 +14,15 @@ if defaul_settings.ERROR:
 	sys.exit()
 
 #new_Doc 	= info_doc.Doc_and_stage(defaul_settings)
-#new_Image 	= image_stage().Load_update_image(defaul_settings)
-#new_Pdf		= doc_pdf.Load_update_pdf(defaul_settings)
+#new_Image 	= image_stage.Load_update_image(defaul_settings)
+new_Pdf		= doc_pdf.Load_update_pdf(defaul_settings)
 
-
-#def main():
+def main():
 #	new_Doc.main()
 #	new_Image.main()
-#	new_Pdf.main()
+	new_Pdf.main()
 
-#main()
+main()
 #while True:
 	#main()
 	#print('================')

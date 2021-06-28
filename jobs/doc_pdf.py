@@ -4,7 +4,7 @@ import base64
 from jobs import sql
 import os
 
-class Load_update_pdf()
+class Load_update_pdf():
 	
 	def __init__(self, default_settings):
 		self.LOGIN_1C 			= default_settings.LOGIN_1C

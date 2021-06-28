@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from jobs import sql
 import mysql.connector
 import json
