@@ -41,12 +41,22 @@ class Doc_and_stage():
 			
 			if fl == False:
 				sql.session.delete(doc)
+				'''Удалим все этапы этого документа
+					удалить все картинки
+				'''
+				delete_cascade_stage(doc.number)
 				
-				del_stage = sql.session.query(sql.TableStage).filter_by(id_object=doc.number).all()
-				for stage in del_stage:
-					sql.session.delete(stage)
+				#del_stage = sql.session.query(sql.TableStage).filter_by(id_object=doc.number).all()
+				#for stage in del_stage:
+				#	sql.session.delete(stage)
 					
 		sql.session.commit()
+		
+	def delete_cascade_stage(self, number_doc):
+		
+		del_stage = sql.session.query(sql.TableStage).filter_by(id_object=number_doc).all()
+		for stage in del_stage:
+			sql.session.delete(stage)
 		
 	def delete_all_stage(self):
 		all_stage = sql.session.query(sql.TableStage).all()
